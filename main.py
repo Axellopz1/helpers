@@ -1,16 +1,22 @@
-# This is a sample Python script.
+import os
+from helpers.helpers_serialize import dict_to_serialized_file
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+def main():
+    config = {
+        "portfolio": {"GE": 0.5, "JPM": 0.2, "MSFT": 0.2, "PG": 0.1},
+        "field_to_keep": "Adj Close",
+        "begin_date": "2015-01-02",
+        "end_date": "2018-03-27",
+        "new_fields": ["Date", "Ticker", "Value"],
+    }
+
+    os.makedirs("output", exist_ok=True)
+    path = os.path.join(os.getcwd(), "output", "output.toml")
+    print(path)
+    dict_to_serialized_file(config, path)
+    print("OK")
+
+if __name__ == "__main__":
+    main()
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
